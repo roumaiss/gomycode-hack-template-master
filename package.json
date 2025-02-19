@@ -1,0 +1,24 @@
+{
+	"name": "gomycode-hack-template",
+	"version": "1.0.0",
+	"description": "A template for gomyhack event by gomycode",
+	"license": "ISC",
+	"author": "",
+	"type": "module",
+	"main": "./backend-template/index.js",
+	"scripts": {
+		"postinstall:backend": "cd backend-template && npm install",
+		"postinstall:client": "cd frontend-template && npm install",
+		"postinstall": "npm run postinstall:backend && npm run postinstall:client",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"server": "cd backend-template && npm run dev",
+		"client": "cd frontend-template && npm run dev"
+	},
+	"devDependencies": {
+		"concurrently": "^9.1.2",
+		"daisyui": "^5.0.0-beta.8"
+	},
+	"dependencies": {
+		"pino-pretty": "^13.0.0"
+	}
+}
