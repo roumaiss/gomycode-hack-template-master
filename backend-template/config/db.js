@@ -4,13 +4,13 @@ import logger from "./logger.js";
 const dbConnection = mongoose
     .connect(process.env.MONGODB_URI, {
         auth: {
-            username: process.env.MONGODB_USER,
+            username: process.env.MONGODB_USERNAME,
             password: process.env.MONGODB_PASSWORD,
         },
-        dbName: process.env.MONGODB_DB_NAME,
+        dbName: process.env.MONGODB_DBNAME,
     })
     .then(() => {
-        logger.info(`DB connected in ${process.env.MONGODB_DB_NAME}`);
+        logger.info(`DB connected in ${process.env.MONGODB_DBNAME}`);
     })
     .catch((error) => {
         logger.error(error);
