@@ -25,7 +25,7 @@ export default function Navbar() {
                   isActive("/") ? "text-[#CCAC86]" : "text-white"
                 } hover:text-[#CCAC86]`}
               >
-                Gallerie 
+                About us
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/") ? "w-full" : "w-0"
@@ -40,7 +40,7 @@ export default function Navbar() {
                   isActive("/") ? "text-[#CCAC86]" : "text-white"
                 } hover:text-[#CCAC86]`}
               >
-                A propos 
+              Recipes
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/") ? "w-full" : "w-0"
@@ -70,7 +70,7 @@ export default function Navbar() {
                   isActive("/") ? "text-[#CCAC86]" : "text-white"
                 } hover:text-[#CCAC86]`}
               >
-                Outils 
+        Gyms
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/") ? "w-full" : "w-0"
