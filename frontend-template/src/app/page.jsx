@@ -1,10 +1,10 @@
 'use client'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import Navbar from "@/components/Navbar";
 // import SubscribeModal from "./components/SubscribeModal"; // Assuming you have a modal component
 
 export default function Home() {
