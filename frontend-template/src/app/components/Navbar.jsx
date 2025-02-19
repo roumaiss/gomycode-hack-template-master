@@ -15,14 +15,14 @@ export default function Navbar() {
           {/* <Link href="/">
             <img width="150px" src="/" alt="Logo" />
           </Link> */}
-          <h1 className="text-blue-700 text-5xl">Logo</h1>
+          <Link href ='/' className="text-blue-700 text-5xl">Logo</Link>
 
           {/* Centered Navigation Links */}
-          <ul className="flex gap-5 text-xl mx-auto">
+          <ul className="flex gap-8 text-xl mx-auto">
             <li>
               <Link
                 href="/"
-                className={`relative group transition duration-300 tracking-widest font-bold  ${
+                className={`relative group transition duration-300 tracking-wide font-bold  ${
                   isActive("/") ? "text-blue-500" : "text-blue-700"
                 } hover:text-blue-700`}
               >
@@ -36,15 +36,15 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                href="/recipes"
-                className={`relative group transition duration-300 tracking-widest font-bold ${
-                  isActive("/recipes") ? "text-blue-500" : "text-blue-700"
+                href="/alimentation-program"
+                className={`relative group transition duration-300 tracking-wide font-bold ${
+                  isActive("/alimentation-program") ? "text-blue-500" : "text-blue-700"
                 } hover:text-blue-700`}
               >
-                Recipes
+        Alimentation program
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
-                    isActive("/recipes") ? "w-full" : "w-0"
+                    isActive("/alimentation-program") ? "w-full" : "w-0"
                   } bg-blue-700 group-hover:w-full transition-all duration-300`}
                 ></span>
               </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
             <li>
               <Link
                 href="/gyms"
-                className={`relative group transition duration-300 tracking-widest font-bold ${
+                className={`relative group transition duration-300 tracking-wide font-bold ${
                   isActive("/gyms") ? "text-blue-500" : "text-blue-700"
                 } hover:text-blue-700`}
               >
@@ -68,7 +68,7 @@ export default function Navbar() {
             <li>
               <Link
                 href="/contact"
-                className={`relative group transition duration-300 tracking-widest font-bold ${
+                className={`relative group transition duration-300 tracking-wide font-bold ${
                   isActive("/contact") ? "text-blue-500" : "text-blue-700"
                 } hover:text-blue-700`}
               >

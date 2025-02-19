@@ -5,90 +5,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-// Subscribe Modal Component
-function SubscribeModal({ isOpen, onClose }) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    alert("Subscription form submitted!");
-    onClose();
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-blue-700 mb-6">Subscribe Now</h2>
-        <form onSubmit={handleSubmit}>
-          {/* Payment Method Field */}
-          <div className="mb-6">
-            <label
-              htmlFor="paymentMethod"
-              className="block text-gray-700 font-semibold mb-2"
-            >
-              Payment Method
-            </label>
-            <select
-              id="paymentMethod"
-              name="paymentMethod"
-              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg  focus:border-blue-500"
-              required
-            >
-              <option value="">Select Payment Method</option>
-              <option value="creditCard">Credit Card</option>
-              <option value="paypal">PayPal</option>
-              <option value="bankTransfer">Bank Transfer</option>
-            </select>
-          </div>
-
-          {/* Postal Code Field */}
-          <div className="mb-6">
-            <label
-              htmlFor="postalCode"
-              className="block text-gray-700 font-semibold mb-2"
-            >
-              Postal Code
-            </label>
-            <input
-              type="text"
-              id="postalCode"
-              name="postalCode"
-              placeholder="Enter your postal code"
-              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-              required
-            />
-          </div>
-
-          {/* Form Buttons */}
-          <div className="flex justify-end gap-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-}
+// import SubscribeModal from "./components/SubscribeModal"; // Assuming you have a modal component
 
 export default function Home() {
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user); // Use isLoggedIn instead of isAuthenticated
+  const [isModalOpen, setIsModalOpen] = useState(false); // Add state for modal visibility
 
   const openModal = () => {
-    if (isAuthenticated) {
+    if (isLoggedIn) {
       // If user is logged in, redirect to the Subscribe page
       router.push("/subscribe");
     } else {
@@ -177,7 +102,7 @@ export default function Home() {
               </h3>
               <p className="text-gray-600 mb-4">{recipe.description}</p>
               <Link
-                href=''
+                href=""
                 className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
               >
                 View Recipe
@@ -211,8 +136,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Subscribe Modal */}
-      <SubscribeModal isOpen={isModalOpen} onClose={closeModal} />
+      {/* If modal is open, display it
+      {isModalOpen && (
+        <SubscribeModal isOpen={isModalOpen} onClose={closeModal} 
+        
+        />
+      )} */}
 
       <Footer />
     </>
