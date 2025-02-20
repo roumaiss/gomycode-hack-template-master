@@ -10,21 +10,21 @@ export default function About() {
             img: "gym-coach3.webp",
             profession: "Nutritionist",
             description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis beatae vero sed dolor, nulla esse!",
+                "Helping you stay active, build strong habits, and achieve your fitness and lifestyle goals.",
         },
         {
             name: "John Doe",
             img: "gym-coach3.webp",
             profession: "Coach",
             description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis beatae vero sed dolor, nulla esse!",
+                "Providing personalized meal plans and expert nutrition guidance to support your wellness journey.",
         },
         {
             name: "John Doe",
             img: "gym-coach3.webp",
             profession: "Doctor",
             description:
-                "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis beatae vero sed dolor, nulla esse!",
+                "Offering professional medical advice and health insights to guide you toward a healthier life.",
         },
     ];
     return (

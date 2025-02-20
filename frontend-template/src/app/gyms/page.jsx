@@ -6,23 +6,23 @@ export default function Gyms() {
     const coaches = [
         {
             id: 1,
-            title: "Jean-Jack",
+            title: "M'Hamed Didouche",
             description:
-                "A delicious and nutritious smoothie with fresh fruits, greens, and a boost of protein.",
+                "M'Hamed specializes in strength training and endurance coaching, helping clients build muscle, improve mobility, and stay motivated. His personalized workout plans make fitness both effective and sustainable.",
             image: "/gym-coach1.webp",
         },
         {
             id: 2,
-            title: "Quinoa Salad",
+            title: "Khalil Cherif",
             description:
-                "A healthy, protein-packed salad with quinoa, vegetables, and a tangy dressing.",
+                "Khalil blends mindfulness, stress management, and healthy habits to create a balanced lifestyle. She helps clients improve their mental clarity, sleep, and overall well-being through holistic coaching.",
             image: "/gym-coach2.webp",
         },
         {
             id: 3,
-            title: "Quinoa Salad",
+            title: "Yassine Tadjin",
             description:
-                "A healthy, protein-packed salad with quinoa, vegetables, and a tangy dressing.",
+                "With a focus on fat loss, energy optimization, and athletic performance, Yassine designs programs that help clients lose weight, boost stamina, and stay disciplined in their fitness journey.",
             image: "/gym-coach3.webp",
         },
     ];
