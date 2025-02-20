@@ -5,6 +5,7 @@ import logger from "../config/logger.js";
 export async function verifyCredentials(req, res, next) {
     try {
         const bearerToken = req.headers.authorization;
+        console.log(bearerToken);
         if (!bearerToken) throw new Error("Bearer token not provided");
         const token = bearerToken.split(" ")[1];
         const data = jwt.verify(token, process.env.AUTH_SECRET);
@@ -21,6 +22,6 @@ export async function isLoggedIn(req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.json({ error: "You are not logged in" });
+        res.status(400).json({ error: "You are not logged in" });
     }
 }
