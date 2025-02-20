@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Footer from "./components/Footer";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "@/components/Navbar";
@@ -108,7 +108,6 @@ export default function Home() {
                             <p className="text-gray-600 mb-4">
                                 {recipe.description}
                             </p>
-                          
                         </div>
                     ))}
                 </div>
