@@ -65,32 +65,36 @@ export default function Gyms() {
             </div>
 
             {/* ////////////////// */}
-
-            <div className="grid grid-cols-3 gap-5 p-16">
-                {coaches.map((coach) => (
-                    <div
-                        key={coach.id}
-                        className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300"
-                    >
-                        <img
-                            src={coach.image}
-                            alt={coach.title}
-                            className="w-full  object-fill bg-center rounded-t-lg mb-4"
-                        />
-                        <h3 className="text-2xl font-semibold text-blue-700 mb-4">
-                            {coach.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4">
-                            {coach.description}
-                        </p>
-                        <Link
-                            href=""
-                            className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
+            <div className="px-16 py-8">
+                <h2 className="text-5xl font-bold text-center text-blue-700 mb-5 p-2">
+                    Meet our professional coaches
+                </h2>
+                <div className="grid grid-cols-3 gap-5 ">
+                    {coaches.map((coach) => (
+                        <div
+                            key={coach.id}
+                            className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300"
                         >
-                            View coach
-                        </Link>
-                    </div>
-                ))}
+                            <img
+                                src={coach.image}
+                                alt={coach.title}
+                                className="w-full  object-fill bg-center rounded-t-lg mb-4"
+                            />
+                            <h3 className="text-2xl font-semibold text-blue-700 mb-4">
+                                {coach.title}
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                {coach.description}
+                            </p>
+                            <Link
+                                href=""
+                                className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
+                            >
+                                View coach
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <Footer />
