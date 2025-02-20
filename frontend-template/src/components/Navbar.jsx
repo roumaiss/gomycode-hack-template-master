@@ -2,20 +2,31 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "@/redux/slices/user"; // Import setUser action for logging out
 
 export default function Navbar() {
   const pathname = usePathname();
   const isActive = (href) => pathname === href;
+
+  // Access the Redux store state
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
+
+  // Handle logout
+  const handleLogout = () => {
+    dispatch(setUser(null)); // Dispatch setUser with null to log out
+    localStorage.removeItem("token"); // Optionally, clear the token from localStorage
+  };
 
   return (
     <header className="bg-transparent">
       <nav className="max-w-screen-xl mx-auto p-5 bg-transparent">
         <div className="flex justify-between items-center bg-transparent">
           {/* Logo on the left */}
-          {/* <Link href="/">
-            <img width="150px" src="/" alt="Logo" />
-          </Link> */}
-          <Link href ='/' className="text-blue-700 text-5xl">Logo</Link>
+          <Link href="/" className="text-blue-700 text-5xl">
+            Logo
+          </Link>
 
           {/* Centered Navigation Links */}
           <ul className="flex gap-8 text-xl mx-auto">
@@ -41,7 +52,7 @@ export default function Navbar() {
                   isActive("/alimentation-program") ? "text-blue-500" : "text-blue-700"
                 } hover:text-blue-700`}
               >
-        Alimentation program
+                Alimentation program
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/alimentation-program") ? "w-full" : "w-0"
@@ -82,13 +93,22 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Login Button on the right */}
-          <Link
-            href="/login"
-            className="bg-blue-700 text-white px-7 py-2 rounded-lg text-lg font-bold hover:bg-blue-500 transition duration-300"
-          >
-            Login
-          </Link>
+          {/* Conditional Rendering for Login/Logout */}
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="bg-blue-700 text-white px-7 py-2 rounded-lg text-lg font-bold hover:bg-blue-500 transition duration-300"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              href="/login"
+              className="bg-blue-700 text-white px-7 py-2 rounded-lg text-lg font-bold hover:bg-blue-500 transition duration-300"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </nav>
     </header>

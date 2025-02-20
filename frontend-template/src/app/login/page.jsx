@@ -1,7 +1,11 @@
-'use client'
+"use client"
 import { useDispatch } from "react-redux";
-// import { login } from "../";
 import axios from "axios";
+import { setUser } from "@/redux/slices/user";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Navbar from "@/components/Navbar";
+import Footer from "../components/Footer";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -24,17 +28,17 @@ export default function LoginForm() {
 
         const { email, password } = formData; // Get email and password from formData
         try {
-            const response = await axios.post('http://localhost:6941/login', { email, password });
+            const response = await axios.post('http://localhost:6941/api/v1/auth/login', { email, password });
             const { user, token } = response.data;
 
             // Save the token in localStorage
             localStorage.setItem('token', token);
 
             // Dispatch the login action to store user info in Redux
-            dispatch(login(user));  // Dispatch login action with user data from API
+            dispatch(setUser(user));  // Dispatch login action with user data from API
 
             // Redirect user to another page, like a dashboard or homepage
-            router.push('/dashboard');  // Example redirect
+            router.push('/');  // Example redirect
 
         } catch (error) {
             setError(error.response ? error.response.data : "An error occurred");

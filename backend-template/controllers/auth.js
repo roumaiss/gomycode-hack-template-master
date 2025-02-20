@@ -4,42 +4,23 @@ import jwt from "jsonwebtoken";
 import logger from "../config/logger.js";
 
 export async function loginUser(req, res) {
-    const [formData, setFormData] = useState({ email: "", password: "" });
-    const [error, setError] = useState('');
-    const router = useRouter();
-    const dispatch = useDispatch(); 
-  
-    // Handle input change
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    };
-  
-    // Handle form 
-    const submit = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await axios.post("http://localhost:3001/login", {
-          email: formData.email,
-          password: formData.password
+    const { email, password } = req.body;
+    try {
+        const user = await userModel.findOne({ email: email });
+        if (!user) throw new Error(`User ${email} not found`);
+        if (!(await bcrypt.compare(password, user.password)))
+            throw new Error("invalid credentials");
+        // generate token for login
+        // npx auth secret to generate token secret
+        const token = jwt.sign({ _id: user._id.toString() }, process.env.AUTH_SECRET, {
+            expiresIn: 3600 * 24,
         });
-  
-        // Store token in localStorage
-        localStorage.setItem("token", response.data.token);
-  
-        // Dispatch the login action 
-        dispatch(login({ token: response.data.token, email: formData.email , 
-      }));
-  
-        router.push("/");  // Redirect after login
-  
-      } catch (error) {
-        setError("Email ou mot de passe incorrect.");
-      }
-    };
+        res.json({ user: user.toSimpleUser(), token: token });
+    } catch (e) {
+        logger.error(e);
+        res.status(400).json({ error: e.message });
+    }
+}
 
 export async function registerUser(req, res) {
     try {
