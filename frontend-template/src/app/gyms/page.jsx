@@ -6,24 +6,51 @@ export default function Gyms() {
     const coaches = [
         {
             id: 1,
-            title: "Jean-Jack",
+            title: "M'Hamed Didouche",
             description:
-                "A delicious and nutritious smoothie with fresh fruits, greens, and a boost of protein.",
+                "M'Hamed specializes in strength training and endurance coaching, helping clients build muscle, improve mobility, and stay motivated. His personalized workout plans make fitness both effective and sustainable.",
             image: "/gym-coach1.webp",
         },
         {
             id: 2,
-            title: "Quinoa Salad",
+            title: "Khalil Cherif",
             description:
-                "A healthy, protein-packed salad with quinoa, vegetables, and a tangy dressing.",
+                "Khalil blends mindfulness, stress management, and healthy habits to create a balanced lifestyle. She helps clients improve their mental clarity, sleep, and overall well-being through holistic coaching.",
             image: "/gym-coach2.webp",
         },
         {
             id: 3,
-            title: "Quinoa Salad",
+            title: "Yassine Tadjin",
             description:
-                "A healthy, protein-packed salad with quinoa, vegetables, and a tangy dressing.",
+                "With a focus on fat loss, energy optimization, and athletic performance, Yassine designs programs that help clients lose weight, boost stamina, and stay disciplined in their fitness journey.",
             image: "/gym-coach3.webp",
+        },
+    ];
+
+    const gyms = [
+        {
+            id: 1,
+            title: "Black Gym",
+            address: "40 Rue du Chenoua, Hydra",
+            image: "/gym1.jpg",
+            location:
+                "https://www.google.com/maps/place/Black+GYM/@36.7428916,3.0368624,17z/data=!3m1!4b1!4m6!3m5!1s0x128fad8617ff30c1:0x2e0f47c7cd84c66a!8m2!3d36.7428916!4d3.0394373!16s%2Fg%2F11twlppctf?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
+        },
+        {
+            id: 2,
+            title: "The Hangar Gym",
+            address: "P2M9+4F4, Hydra",
+            image: "/gym1.jpg",
+            location:
+                "https://www.google.com/maps/place/The+Hangar+Gym/@36.7327733,3.0161374,17z/data=!3m1!4b1!4m6!3m5!1s0x128fadfd530c6869:0x40cb211fb51d983d!8m2!3d36.7327733!4d3.0187123!16s%2Fg%2F11d_9fbqhv?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
+        },
+        {
+            id: 3,
+            title: "Home Fit",
+            address: "19 Rue de Cirta, Hydra 16000",
+            image: "/gym1.jpg",
+            location:
+                "https://www.google.com/maps/place/Home+Fit/@36.7470232,3.0408104,17z/data=!3m1!4b1!4m6!3m5!1s0x128fb3b6d06fb06f:0xa5be09f1a99ca727!8m2!3d36.7470232!4d3.0433853!16s%2Fg%2F11p_5v6sw1?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
         },
     ];
 
@@ -65,32 +92,69 @@ export default function Gyms() {
             </div>
 
             {/* ////////////////// */}
-
-            <div className="grid grid-cols-3 gap-5 p-16">
-                {coaches.map((coach) => (
-                    <div
-                        key={coach.id}
-                        className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300"
-                    >
-                        <img
-                            src={coach.image}
-                            alt={coach.title}
-                            className="w-full  object-fill bg-center rounded-t-lg mb-4"
-                        />
-                        <h3 className="text-2xl font-semibold text-blue-700 mb-4">
-                            {coach.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4">
-                            {coach.description}
-                        </p>
-                        <Link
-                            href=""
-                            className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
+            <div className="px-16 py-8">
+                <h2 className="text-5xl font-bold text-center text-blue-700 mb-5 p-2">
+                    Meet our professional coaches
+                </h2>
+                <div className="grid grid-cols-3 gap-5 ">
+                    {coaches.map((coach) => (
+                        <div
+                            key={coach.id}
+                            className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300"
                         >
-                            View coach
-                        </Link>
-                    </div>
-                ))}
+                            <img
+                                src={coach.image}
+                                alt={coach.title}
+                                className="w-full  object-fill bg-center rounded-t-lg mb-4"
+                            />
+                            <h3 className="text-2xl font-semibold text-blue-700 mb-4">
+                                {coach.title}
+                            </h3>
+                            <p className="text-gray-600 mb-4">
+                                {coach.description}
+                            </p>
+                            <Link
+                                href=""
+                                className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
+                            >
+                                View coach
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* ////////////////// */}
+
+            <div className="px-16 py-8">
+                <h2 className="text-5xl font-bold text-center text-blue-700 mb-5 p-2">
+                    Our partners
+                </h2>
+                <div className="grid grid-cols-3 gap-5 ">
+                    {gyms.map((gym) => (
+                        <div
+                            key={gym.id}
+                            className="bg-white p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300"
+                        >
+                            <img
+                                src={gym.image}
+                                alt={gym.title}
+                                className="w-full  object-cover bg-center rounded-t-lg mb-4"
+                            />
+                            <h3 className="text-2xl font-semibold text-blue-700 mb-4">
+                                {gym.title}
+                            </h3>
+                            <p className="text-gray-600 mb-4">{gym.address}</p>
+                            <a
+                                target="_blank"
+                                href={gym.location}
+                                className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
+                            >
+                                View on maps
+                            </a>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <Footer />

@@ -108,12 +108,7 @@ export default function Home() {
                             <p className="text-gray-600 mb-4">
                                 {recipe.description}
                             </p>
-                            <Link
-                                href=""
-                                className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
-                            >
-                                View Recipe
-                            </Link>
+                          
                         </div>
                     ))}
                 </div>

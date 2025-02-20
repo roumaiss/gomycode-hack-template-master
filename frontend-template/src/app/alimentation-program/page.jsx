@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import React from "react";
 import Footer from "../components/Footer";
+import Link from "next/link";
 
 export default function AlimentationProgram() {
   // List of recipes
@@ -24,91 +25,109 @@ export default function AlimentationProgram() {
       title: "Avocado Toast",
       description:
         "A simple yet healthy meal with mashed avocado on whole-grain toast.",
-      image: "/avocado-toast.jpg",
+      image: "/toast.jpg",
     },
     {
       id: 4,
       title: "Grilled Chicken Salad",
       description:
         "A protein-packed salad with grilled chicken, greens, and a light dressing.",
-      image: "/grilled-chicken-salad.jpg",
+      image: "/chicken.jpg",
     },
     {
       id: 5,
       title: "Vegan Buddha Bowl",
       description:
         "A nourishing bowl with quinoa, roasted veggies, hummus, and avocado.",
-      image: "/vegan-buddha-bowl.jpg",
+      image: "/budha.jpg",
     },
     {
       id: 6,
       title: "Greek Yogurt Parfait",
       description:
         "A refreshing parfait made with Greek yogurt, granola, and fresh berries.",
-      image: "/yogurt-parfait.jpg",
+      image: "/greek.jpg",
     },
     {
       id: 7,
-      title: "Veggie Stir-Fry",
-      description:
-        "A colorful stir-fry with mixed vegetables and a savory soy sauce.",
-      image: "/veggie-stir-fry.jpg",
-    },
-    {
-      id: 8,
       title: "Chia Pudding",
       description:
         "A creamy and healthy chia pudding made with coconut milk and topped with berries.",
-      image: "/chia-pudding.jpg",
+      image: "/chia.jpg",
     },
   ];
 
   return (
-   <>
-    <div>
-      {/* Recipe Grid */}
-      <Navbar/>
-      <div className="grid grid-cols-4 gap-6 p-6">
-        {recipes.map((recipe) => (
-          <div
-            key={recipe.id}
-            className="bg-white rounded-lg shadow-lg overflow-hidden"
-          >
+    <>
+      <div>
+        {/* Navbar */}
+        <Navbar />
+        <div className="flex items-center justify-between max-w-screen-xl mx-auto bg-blue-50 border-b border-blue-500">
+          {/* Text on the left */}
+          <div className="w-[600px]">
             <img
-              src={recipe.image}
-              alt={recipe.title}
-              className="w-full h-48 object-cover"
+              src="/recipe-page.png"
+              alt="Hero Image"
+              className="rounded-lg"
             />
-            <div className="p-4">
-              <h3 className="text-xl font-semibold">{recipe.title}</h3>
-              <p className="text-gray-500">{recipe.description}</p>
-            </div>
           </div>
-        ))}
+          <div className="w-1/2 mb-20">
+            <h1 className="text-5xl text-blue-700 font-bold mb-4">
+              Fuel Your Body, One Meal at a Time
+            </h1>
+            <p className="text-lg text-gray-500 mb-8">
+              Unlock your full potential with a nutrition plan that suits your
+              lifestyle. From balanced meals to energy-boosting snacks and
+              recovery foods, we’re here to help you stay on track and
+              consistent as you nourish your body for optimal health. Let’s make
+              every bite count!
+            </p>
+            <Link
+              href=""
+              className="bg-blue-500 text-white font-bold px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+            >
+              Start Your Journey
+            </Link>
+          </div>
+        </div>
+
+        {/* Paragraph Section */}
+        <div className="p-6 max-w-screen-xl mx-auto">
+          <h1 className="text-5xl text-blue-700 font-bold flex justify-center ">Our Recipes</h1>
+         
+        </div>
+
+        {/* Recipe Grid */}
+        <div className="grid grid-cols-3 gap-16 p-6 max-w-screen-xl mx-auto">
+          {recipes.map((recipe) => (
+            <div
+              key={recipe.id}
+              className="bg-white rounded-lg shadow-lg overflow-hidden"
+            >
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className="w-full h-96 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-xl text-blue-700 font-semibold">
+                  {recipe.title}
+                </h3>
+                <p className="text-gray-500 mb-5">{recipe.description}</p>
+                <Link
+                  href={`alimentation-program/${recipe.id}`} // Dynamic link
+                  className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold"
+                >
+                  View Recipe
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Inspiration Section */}
-      <section className="bg-gray-100 p-12 mt-12">
-        <h2 className="text-3xl font-bold text-center mb-6">Find Your Inspiration</h2>
-        <p className="text-lg text-center text-gray-700">
-          Whether you're looking to fuel your workout or enjoy a healthy meal at home, our recipes
-          are designed to keep you energized and motivated. Explore new dishes that nourish your
-          body and spark creativity in the kitchen.
-        </p>
-      </section>
-
-      {/* Additional Section */}
-      <section className="p-12 mt-12 bg-white">
-        <h2 className="text-3xl font-bold text-center mb-6">Transform Your Health</h2>
-        <p className="text-lg text-center text-gray-700">
-          Our program is designed to help you make long-lasting lifestyle changes. Start with one
-          small change today and watch your habits evolve. Whether it's meal prep or fitness, we
-          provide the guidance and tools you need to stay on track.
-        </p>
-      </section>
-    </div>
-    <Footer/>
-   
-   </>
+      {/* Footer */}
+      <Footer />
+    </>
   );
 }
