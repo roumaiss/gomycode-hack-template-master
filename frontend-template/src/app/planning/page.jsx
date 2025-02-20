@@ -3,8 +3,6 @@ import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Pagination from "../components/Pagination";
-import TaskReminder from "../components/TaskRemaider";
-
 export default function Page() {
   const plans = [
     {
@@ -206,7 +204,6 @@ export default function Page() {
       day: "Sunday",
       schedule: [
         {
-          date: "2025-02-19T00:00:00.000Z",
           tasks: [
             {
               startTime: "06:30",
@@ -265,7 +262,6 @@ export default function Page() {
           ],
         },
         {
-          date: "2025-02-20T00:00:00.000Z",
           tasks: [
             {
               startTime: "07:00",
@@ -394,6 +390,7 @@ export default function Page() {
 
     setSelectedPlan(foundPlan || null);
   }
+  
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -407,7 +404,17 @@ export default function Page() {
     <>
       <Navbar />
       <Pagination days={daysOfWeek} getplanday={getPlanForDay} />
-      
+      <div className="flex gap-4 justify-center items-center my-4">
+        <button className="btn  bg-white text-blue-500 border border-blue-500 w-[10rem] hover:bg-blue-700 hover:text-white">
+          Add planning
+        </button>
+        <button className="btn bg-white text-blue-500 border border-blue-500 w-[10rem] hover:bg-blue-700 hover:text-white">
+          update planning
+        </button>
+        <button className="btn bg-white text-blue-500 border border-blue-500 w-[10rem] hover:bg-blue-700 hover:text-white">
+          delete planning
+        </button>
+      </div>
       <div className="card mx-[10rem] shadow-xl p-[2rem] bg-white">
         {selectedPlan ? (
           <div>
@@ -420,7 +427,7 @@ export default function Page() {
               </p>
             </div>
             <div className="flex w-full flex-col my-4">
-              {selectedPlan.schedule[0]?.tasks.map((task, i) => {
+              {(selectedPlan?.schedule || [])[0]?.tasks.map((task, i) => {
                 console.log({ task });
                 return (
                   <div
@@ -451,12 +458,12 @@ export default function Page() {
             </div>
           </div>
         ) : (
-          <p>No plan found for the selected day.</p>
+          <p className="text-base-700 ">No plan found for the selected day.</p>
         )}
       </div>
 
       {/* Modal Dialogs */}
-      {selectedPlan.schedule[0]?.tasks.map((task, i) => (
+      {(selectedPlan?.schedule || [])[0]?.tasks.map((task, i) => (
         <dialog
           id={`my_modal_${i}`}
           key={`modal_${i}`}
@@ -479,9 +486,7 @@ export default function Page() {
               </button>
             </div>
           </div>
-          <TaskReminder tasks={selectedPlan.schedule[0]?.tasks} />
         </dialog>
-        
       ))}
       <Footer />
     </>

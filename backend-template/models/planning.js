@@ -18,6 +18,7 @@ const planningSchema = new Schema(
         schedule: [
             {
                 date: { type: Date, required: true },
+                day: { type: String },
                 tasks: [taskSchema],
             },
         ],
@@ -25,6 +26,20 @@ const planningSchema = new Schema(
 
     { timestamps: true }
 );
+planningSchema.pre("save", function (next) {
+    // Automatically set the day name based on the date
+    const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ];
+    this.schedule.day = daysOfWeek[new Date(this.schedule.date).getDay()];
+    next();
+});
 
 const planningModal = model("Planning", planningSchema);
 

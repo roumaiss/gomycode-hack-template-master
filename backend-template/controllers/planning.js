@@ -52,17 +52,10 @@ export async function getUserPlansByDate(req, res) {
     try {
         if (!date) throw new Error("No date passed in the request");
 
-        const targetDate = new Date(date);
-
-        const plans = await planningModal
-            .find({
-                userId,
-                "schedule.date": {
-                    $gte: targetDate.setHours(0, 0, 0, 0),
-                    $lt: targetDate.setHours(23, 59, 59, 999),
-                },
-            })
-            .populate("userId");
+        const plans = await Planning.find({
+            userId,
+            "schedule.day": date, // Directly match the stored day name
+        }).populate("userId");
 
         if (plans.length === 0) {
             return res.status(404).json({ message: "No user-created plans found" });
@@ -80,18 +73,10 @@ export async function getProPlansByDate(req, res) {
     const { userId } = req.user;
     try {
         if (!date) throw new Error("No date passed in the request");
-
-        const targetDate = new Date(date);
-
-        const plans = await planningModal
-            .find({
-                profissional: userId, // Only plans assigned to the user by a professional
-                "schedule.date": {
-                    $gte: targetDate.setHours(0, 0, 0, 0),
-                    $lt: targetDate.setHours(23, 59, 59, 999),
-                },
-            })
-            .populate(["profissionalId", "userId"]);
+        const plans = await Planning.find({
+            userId,
+            "schedule.day": date, // Directly match the stored day name
+        }).populate(["profissionalId", "userId"]);
 
         if (plans.length === 0) {
             return res.status(404).json({ message: "No professional-created plans found" });
