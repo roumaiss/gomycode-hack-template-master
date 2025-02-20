@@ -1,13 +1,13 @@
-import { myAPIConfig } from "../axiosConfigs";
+import { apiConfig } from "../axiosConfig";
 
 export async function login({ email, password }) {
-    return myAPIConfig.post("/auth/login", {
+    return apiConfig.post("/auth/login", {
         email,
         password,
     });
 }
 export async function register({ email, password, firstName, lastName }) {
-    return myAPIConfig.post("/auth/register", {
+    return apiConfig.post("/auth/register", {
         email,
         password,
         firstName,
@@ -16,5 +16,11 @@ export async function register({ email, password, firstName, lastName }) {
 }
 
 export async function checkUser() {
-    return await myAPIConfig.get("/auth");
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("You aren't logged in");
+    return apiConfig.get("/auth", {
+        headers: {
+            Authorization: "Bearer " + token,
+        },
+    });
 }
