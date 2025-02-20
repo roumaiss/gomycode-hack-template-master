@@ -2,8 +2,9 @@
 import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Footer from "../components/Footer";
-import Pagination from "../components/Pagination";
 import Link from "next/link";
+import Pagination from "@/components/Pagination";
+import DialogPlanning from "@/components/DialogPlanning";
 export default function Page() {
   const plans = [
     {
@@ -383,9 +384,17 @@ export default function Page() {
     },
     // Additional plans here...
   ];
-
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
 
+  // const [updatedData, setUpdatedData] = useState({
+  //   description: selectedPlan ? selectedPlan.description : null,
+  //   day: selectedPlan ? selectedPlan.day : null,
+  //   schedule: selectedPlan ? selectedPlan.schedule : [],
+  // });
+  // function handleClick(e, index) {
+  //   e.preventDefault();
+  //   document.getElementById(`my_modal_${index}`).showModal();
+  // }
   function getPlanForDay(dayName) {
     const foundPlan = plans.find((p) => p.day === dayName);
 
@@ -400,6 +409,11 @@ export default function Page() {
     "Friday",
     "Saturday",
   ];
+  function handleDialog(i) {
+    e.stopPropagation();
+
+    document.getElementById(`update_${i}`).showModal();
+  }
   return (
     <>
       <Navbar />
@@ -436,9 +450,9 @@ export default function Page() {
                   <div
                     key={"task" + i}
                     className="card flex-row justify-between bg-white shadow-xl p-4 border border-blue-500  -box mb-4"
-                    onClick={() => {
-                      document.getElementById(`my_modal_${i}`).showModal();
-                    }}
+                    onClick={() =>
+                      document.getElementById(`my_modal_${i}`).showModal()
+                    }
                   >
                     <div>
                       <h3 className="text-black font-bold ">{task.title}</h3>
@@ -448,10 +462,16 @@ export default function Page() {
                       </div>
                     </div>
                     <div className="flex gap-4 ">
-                      <button className="btn bg-blue-500 border-0 w-[5rem] hover:bg-blue-700 text-white">
+                      <button
+                        className="btn bg-blue-500 border-0 w-[5rem] hover:bg-blue-700 text-white"
+                        onClick={(i, e) => handleDialog(i, e)}
+                      >
                         Edit
                       </button>
-                      <button className="btn bg-blue-500 border-0 w-[5rem] hover:bg-blue-700 text-white">
+                      <button
+                        className="btn bg-blue-500 border-0 w-[5rem] hover:bg-blue-700 text-white"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         Delete
                       </button>
                     </div>
@@ -467,29 +487,33 @@ export default function Page() {
 
       {/* Modal Dialogs */}
       {(selectedPlan?.schedule || [])[0]?.tasks.map((task, i) => (
-        <dialog
-          id={`my_modal_${i}`}
-          key={`modal_${i}`}
-          className="modal"
-          onClick={(e) => e.stopPropagation()} // Prevent the dialog from closing when clicked inside
-        >
-          <div className="modal-box  bg-white border border-blue-700 ">
+        <DialogPlanning id={`my_modal_${i}`}>
+          <h3 className="font-bold text-lg text-blue-700">{task.title}</h3>
+          <p className="py-4 text-gray-800">{task.description}</p>
+          <div className="text-gray-500 flex gap-3">
+            <p> Start Time: {task.startTime}</p>
+            <p>End Time: {task.endTime}</p>
+          </div>
+        </DialogPlanning>
+      ))}
+      {(selectedPlan?.schedule || [])[0]?.tasks.map((task, i) => (
+        <DialogPlanning key={`update_${i}`} id={`update_${i}`}>
+          <h2>Update Task</h2>
+          <div>
+            <input
+              type="text"
+              className="input font-bold text-gray-500"
+              defaultValue={task.title} // Added to pre-populate with current title
+            />
+
             <h3 className="font-bold text-lg text-blue-700">{task.title}</h3>
             <p className="py-4 text-gray-800">{task.description}</p>
             <div className="text-gray-500 flex gap-3">
               <p> Start Time: {task.startTime}</p>
               <p>End Time: {task.endTime}</p>
             </div>
-            <div className="modal-action">
-              <button
-                className="btn"
-                onClick={() => document.getElementById(`my_modal_${i}`).close()}
-              >
-                Close
-              </button>
-            </div>
           </div>
-        </dialog>
+        </DialogPlanning>
       ))}
       <Footer />
     </>

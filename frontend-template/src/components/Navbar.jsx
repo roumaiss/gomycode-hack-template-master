@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "@/redux/slices/user"; 
-import Swal from "sweetalert2"; 
+import { setUser } from "@/redux/slices/user";
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -73,10 +73,12 @@ export default function Navbar() {
               <Link
                 href="/alimentation-program"
                 className={`relative group transition duration-300 tracking-wide font-bold ${
-                  isActive("/alimentation-program") ? "text-blue-500" : "text-blue-700"
+                  isActive("/alimentation-program")
+                    ? "text-blue-500"
+                    : "text-blue-700"
                 } hover:text-blue-700`}
               >
-                Alimentation program
+                NutriRecipes
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/alimentation-program") ? "w-full" : "w-0"
