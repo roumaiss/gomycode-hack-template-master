@@ -18,6 +18,6 @@ v1Router.use("/", serverRouter);
 v1Router.use("/admin", isLoggedIn, isAdmin, userRouter);
 v1Router.use("/planUser", isLoggedIn, isSimpleUser, planRouter);
 v1Router.use("/planPro", isLoggedIn, planProRouter);
-v1Router.use('/contact', isLoggedIn, contactRoute )
+v1Router.use('/contact', contactRoute )
 
 export default v1Router;

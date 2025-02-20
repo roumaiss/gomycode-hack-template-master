@@ -1,6 +1,6 @@
-
-
 import { Router } from "express";
+
+import nodemailer from "nodemailer";
 
 const contactRoute = new Router();
 
@@ -14,34 +14,35 @@ contactRoute.post("/", (req, res) => {
 
     // Create a transporter object
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // use false for STARTTLS; true for SSL on port 465
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
-      },
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // use false for STARTTLS; true for SSL on port 465
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD,
+        },
     });
 
     // Configure the mailoptions object
     const mailOptions = {
-      from: process.env.EMAIL,
-      to: email,
-      subject: subject,
-      text: `${message} from ${email}`,
+        from: email,
+        to: process.env.EMAIL ,
+        subject: subject,
+        text: `${message} from ${email}`,
     };
 
     // Send the email
     transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log("Error:", error);
-      } else {
-        console.log("Email sent: ", info.response);
-      }
+        if (error) {
+            res.status(500).json({ error: error.message });
+            console.log("Error:", error);
+        } else {
+            res.status(200).json({ message: "Email sent successfully" });
+            console.log("Email sent: ", info.response);
+        }
     });
-  });
+});
 
-  export default contactRoute;
-
+export default contactRoute;
 
 // In your frontend, you can send a POST request to the '/contact' endpoint with the required data.
