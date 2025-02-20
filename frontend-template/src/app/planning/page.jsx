@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Pagination from "../components/Pagination";
+import Link from "next/link";
 export default function Page() {
   const plans = [
     {
@@ -390,7 +391,6 @@ export default function Page() {
 
     setSelectedPlan(foundPlan || null);
   }
-
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -405,9 +405,12 @@ export default function Page() {
       <Navbar />
       <Pagination days={daysOfWeek} getplanday={getPlanForDay} />
       <div className="flex gap-4 justify-center items-center my-4">
-        <button className="btn  bg-white text-blue-500 border border-blue-500 w-[10rem] hover:bg-blue-700 hover:text-white">
+        <Link
+          href="/add-plan"
+          className="btn  bg-white text-blue-500 border border-blue-500 w-[10rem] hover:bg-blue-700 hover:text-white"
+        >
           Add planning
-        </button>
+        </Link>
         <button className="btn bg-white text-blue-500 border border-blue-500 w-[10rem] hover:bg-blue-700 hover:text-white">
           update planning
         </button>
