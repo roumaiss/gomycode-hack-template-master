@@ -57,7 +57,7 @@ export default function About() {
                 </div>
             </div>
 
-            <div className="flex flex-col justify-center gap-8 items-center">
+            <div className="flex flex-col justify-center gap-8 items-center pb-16">
                 <h1 className="text-5xl text-blue-700 font-bold">Our team</h1>
                 <div className="flex px-16 gap-4 justify-center items-center ">
                     {professionals.map((professional) => (

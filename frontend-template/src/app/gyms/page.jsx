@@ -114,8 +114,8 @@ export default function Gyms() {
                                 {coach.description}
                             </p>
                             <Link
-                                href=""
-                                className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold "
+                                href={`gyms/${coach.id}`} // Dynamic link
+                                className="text-white bg-blue-500 py-2.5 px-4 rounded-lg font-semibold"
                             >
                                 View coach
                             </Link>
