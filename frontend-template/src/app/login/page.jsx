@@ -1,17 +1,17 @@
-"use client"
+"use client";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setUser } from "@/redux/slices/user";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 import Link from "next/link";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
-    const dispatch = useDispatch();  // Set up the dispatch function for Redux
+    const dispatch = useDispatch(); // Set up the dispatch function for Redux
     const router = useRouter();
 
     // Handle input change
@@ -25,25 +25,32 @@ export default function LoginForm() {
 
     // Handle form submit
     const submit = async (e) => {
-        e.preventDefault();  // Prevent default form submission behavior
+        e.preventDefault(); // Prevent default form submission behavior
 
         const { email, password } = formData; // Get email and password from formData
         try {
-            const response = await axios.post('http://localhost:6941/api/v1/auth/login', { email, password });
+            const response = await axios.post(
+                "http://localhost:6941/api/v1/auth/login",
+                { email, password }
+            );
             const { user, token } = response.data;
 
             // Save the token in localStorage
-            localStorage.setItem('token', token);
+            localStorage.setItem("token", token);
 
             // Dispatch the login action to store user info in Redux
-            dispatch(setUser(user));  // Dispatch login action with user data from API
+            dispatch(setUser(user)); // Dispatch login action with user data from API
 
             // Redirect user to another page, like a dashboard or homepage
-            router.push('/');  // Example redirect
-
+            router.push("/"); // Example redirect
         } catch (error) {
-            setError(error.response ? error.response.data : "An error occurred");
-            console.error('Login failed', error.response ? error.response.data : error);
+            setError(
+                error.response ? error.response.data : "An error occurred"
+            );
+            console.error(
+                "Login failed",
+                error.response ? error.response.data : error
+            );
         }
     };
 
@@ -61,7 +68,8 @@ export default function LoginForm() {
                                 <p className="text-sm text-red-500">{error}</p>
                             )}
                             <p className="text-sm font-light text-gray-800">
-                                Start your website in seconds. Don't have an account?{" "}
+                                Start your website in seconds. Don't have an
+                                account?{" "}
                                 <Link
                                     href="/register"
                                     className="font-medium text-blue-600 hover:underline dark:text-blue-500"
@@ -70,7 +78,10 @@ export default function LoginForm() {
                                 </Link>
                                 .
                             </p>
-                            <form className="mt-4 space-y-6 sm:mt-6" onSubmit={submit}>
+                            <form
+                                className="mt-4 space-y-6 sm:mt-6"
+                                onSubmit={submit}
+                            >
                                 <div className="grid gap-6 sm:grid-cols-2">
                                     <div>
                                         <label
