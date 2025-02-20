@@ -2,7 +2,7 @@
 import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Footer from "../components/Footer";
-import Pagination from "../components/Pagination";
+import Pagination from "@/components/Pagination"
 import Link from "next/link";
 export default function Page() {
   const plans = [

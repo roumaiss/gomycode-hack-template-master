@@ -40,15 +40,15 @@ export default function Gyms() {
             id: 2,
             title: "The Hangar Gym",
             address: "P2M9+4F4, Hydra",
-            image: "/gym1.jpg",
+            image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             location:
-                "https://www.google.com/maps/place/The+Hangar+Gym/@36.7327733,3.0161374,17z/data=!3m1!4b1!4m6!3m5!1s0x128fadfd530c6869:0x40cb211fb51d983d!8m2!3d36.7327733!4d3.0187123!16s%2Fg%2F11d_9fbqhv?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
+                "https://www.google.https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D/maps/place/The+Hangar+Gym/@36.7327733,3.0161374,17z/data=!3m1!4b1!4m6!3m5!1s0x128fadfd530c6869:0x40cb211fb51d983d!8m2!3d36.7327733!4d3.0187123!16s%2Fg%2F11d_9fbqhv?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
         },
         {
             id: 3,
             title: "Home Fit",
             address: "19 Rue de Cirta, Hydra 16000",
-            image: "/gym1.jpg",
+            image: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGd5bXxlbnwwfHwwfHx8MA%3D%3D",
             location:
                 "https://www.google.com/maps/place/Home+Fit/@36.7470232,3.0408104,17z/data=!3m1!4b1!4m6!3m5!1s0x128fb3b6d06fb06f:0xa5be09f1a99ca727!8m2!3d36.7470232!4d3.0433853!16s%2Fg%2F11p_5v6sw1?entry=ttu&g_ep=EgoyMDI1MDIxNy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D",
         },
@@ -139,7 +139,7 @@ export default function Gyms() {
                             <img
                                 src={gym.image}
                                 alt={gym.title}
-                                className="w-full  object-cover bg-center rounded-t-lg mb-4"
+                                className="w-full h-96  object-cover bg-center rounded-t-lg mb-4"
                             />
                             <h3 className="text-2xl font-semibold text-blue-700 mb-4">
                                 {gym.title}

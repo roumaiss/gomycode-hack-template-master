@@ -9,7 +9,7 @@ contactRoute.get("/", (_req, res) => {
 });
 
 contactRoute.post("/", (req, res) => {
-    const { name, subject, email, message } = req.body;
+    const { subject, email, message } = req.body;
     // Configure Nodemailer transporter for sending emails
 
     // Create a transporter object
