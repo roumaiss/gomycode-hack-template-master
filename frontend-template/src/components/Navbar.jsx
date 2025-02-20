@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "@/redux/slices/user"; // Import setUser action for logging out
+import { setUser } from "@/redux/slices/user"; 
+import Swal from "sweetalert2"; 
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -13,10 +14,33 @@ export default function Navbar() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
 
-  // Handle logout
+  // Handle logout with confirmation modal
   const handleLogout = () => {
-    dispatch(setUser(null)); // Dispatch setUser with null to log out
-    localStorage.removeItem("token"); // Optionally, clear the token from localStorage
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6", // Blue color for confirm button
+      cancelButtonColor: "#d33", // Red color for cancel button
+      confirmButtonText: "Yes, log out!",
+      background: "#f0f4f8", // Light blue background
+      customClass: {
+        popup: "blue-theme", // Add a custom class for the modal
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(setUser(null)); // Dispatch setUser with null to log out
+        localStorage.removeItem("token"); // Optionally, clear the token from localStorage
+        Swal.fire({
+          title: "Logged Out!",
+          text: "You have been successfully logged out.",
+          icon: "success",
+          confirmButtonColor: "#3085d6", // Blue color for confirm button
+          background: "#f0f4f8", // Light blue background
+        });
+      }
+    });
   };
 
   return (
@@ -33,7 +57,7 @@ export default function Navbar() {
             <li>
               <Link
                 href="/about"
-                className={`relative group transition duration-300 tracking-wide font-bold  ${
+                className={`relative group transition duration-300 tracking-wide font-bold ${
                   isActive("/about") ? "text-blue-500" : "text-blue-700"
                 } hover:text-blue-700`}
               >
@@ -56,11 +80,10 @@ export default function Navbar() {
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/alimentation-program") ? "w-full" : "w-0"
-                  } bg-blue-700 group-hover:w-full transition-all duration-300`}
+                  } bg-blue-500 group-hover:w-full transition-all duration-300`}
                 ></span>
               </Link>
             </li>
-
             <li>
               <Link
                 href="/gyms"
@@ -72,7 +95,7 @@ export default function Navbar() {
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/gyms") ? "w-full" : "w-0"
-                  } bg-blue-700 group-hover:w-full transition-all duration-300`}
+                  } bg-blue-500 group-hover:w-full transition-all duration-300`}
                 ></span>
               </Link>
             </li>
@@ -87,10 +110,27 @@ export default function Navbar() {
                 <span
                   className={`absolute left-0 bottom-0 h-[2px] ${
                     isActive("/contact") ? "w-full" : "w-0"
-                  } bg-blue-700 group-hover:w-full transition-all duration-300`}
+                  } bg-blue-500 group-hover:w-full transition-all duration-300`}
                 ></span>
               </Link>
             </li>
+            {isLoggedIn && (
+              <li>
+                <Link
+                  href="/planning"
+                  className={`relative group transition duration-300 tracking-wide font-bold ${
+                    isActive("/planning") ? "text-blue-500" : "text-blue-700"
+                  } hover:text-blue-700`}
+                >
+                  Planning
+                  <span
+                    className={`absolute left-0 bottom-0 h-[2px] ${
+                      isActive("/planning") ? "w-full" : "w-0"
+                    } bg-blue-500 group-hover:w-full transition-all duration-300`}
+                  ></span>
+                </Link>
+              </li>
+            )}
           </ul>
 
           {/* Conditional Rendering for Login/Logout */}
