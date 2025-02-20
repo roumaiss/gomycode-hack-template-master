@@ -1,8 +1,13 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
+<<<<<<< HEAD
 import Footer from "@/components/Footer";
 import Pagination from "@/components/Pagination";
+=======
+import Footer from "../components/Footer";
+import Pagination from "@/components/Pagination"
+>>>>>>> d1d692c37c787c2baa2e80580f437e52b4043af0
 import Link from "next/link";
 export default function Page() {
     const plans = [
