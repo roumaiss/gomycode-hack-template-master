@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "../components/Footer";
+import Link from "next/link";
 
 export default function LoginForm() {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -61,12 +62,12 @@ export default function LoginForm() {
                             )}
                             <p className="text-sm font-light text-gray-800">
                                 Start your website in seconds. Don't have an account?{" "}
-                                <a
-                                    href="#"
+                                <Link
+                                    href="/register"
                                     className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                                 >
                                     Sign up
-                                </a>
+                                </Link>
                                 .
                             </p>
                             <form className="mt-4 space-y-6 sm:mt-6" onSubmit={submit}>
@@ -85,7 +86,7 @@ export default function LoginForm() {
                                             value={formData.email} // Bind value to state
                                             onChange={handleChange} // Handle input change
                                             className="border border-gray-300 rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 bg-blue-50 dark:border-gray-600 dark:placeholder-gray-400 text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="name@company.com"
+                                            placeholder="Enter you email ..."
                                             required
                                         />
                                     </div>
@@ -103,7 +104,7 @@ export default function LoginForm() {
                                             value={formData.password} // Bind value to state
                                             onChange={handleChange} // Handle input change
                                             className="border border-gray-300 text-black rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 bg-blue-50 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="••••••••"
+                                            placeholder="Enter your password ..."
                                             required
                                         />
                                     </div>
